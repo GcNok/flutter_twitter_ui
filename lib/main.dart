@@ -1,41 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_twitter_ui/wigets/follow_text.dart';
+import 'package:flutter_twitter_ui/wigets/image_and_text.dart';
 
 void main() => runApp(MyApp());
+const DARK_THEME = const Color(0xFF17202A);
+const TWITTER_BLUE = const Color(0xFF4D9FEC);
+const FONT_GRAY = const Color(0xFF8B99A5);
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      title: 'Twitter UI',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(primaryColor: DARK_THEME),
+      home: MyHomePage(title: 'Twitter Dev'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
 
   final String title;
 
@@ -44,68 +29,295 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
-          ],
+      body: SingleChildScrollView(
+        child:Container(
+          color: DARK_THEME,
+          child: Column(
+            children: <Widget>[
+              Stack(
+                children: <Widget>[
+                  Container(
+                    height: 1500,
+                    child: Column(
+                      children: <Widget>[
+                        Image(
+                          image: AssetImage('assets/img/twitter-dev.jpeg'),
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(left: 20),
+                          child: Column(
+                            children: <Widget>[
+                              Container(
+                                margin: EdgeInsets.only(top: 70),
+                                child: Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    "Twitter Dev",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold
+                                    ),
+                                  ),
+                                )
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(top: 6),
+                                child: Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    "@TwitterDev",
+                                    style: TextStyle(
+                                      color: FONT_GRAY,
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                )
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(top: 10),
+                                child: Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: RichText(
+                                    text: TextSpan(
+                                      children: [
+                                        TextSpan(
+                                          text: "The voice of Twitter\'s ",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 13,
+                                          ),
+                                        ),
+                                        TextSpan(
+                                          text: "#DevRel ",
+                                          style: TextStyle(
+                                            color: TWITTER_BLUE,
+                                            fontSize: 13,
+                                          ),
+                                        ),
+                                        TextSpan(
+                                          text: "team, and your official source for updates, news, & events about Twitter\'s API.",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 13,
+                                          ),
+                                        ),
+                                      ]
+                                    ),
+                                  )
+                                )
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(top: 20),
+                                child: Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: RichText(
+                                    text: TextSpan(
+                                      children: [
+                                        TextSpan(
+                                          text: "Need help? Visit ",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 13,
+                                          ),
+                                        ),
+                                        TextSpan(
+                                          text: "twittercommunity.com\n",
+                                          style: TextStyle(
+                                            color: TWITTER_BLUE,
+                                            fontSize: 13,
+                                          ),
+                                        ),
+                                        TextSpan(
+                                          text: "自己紹介を翻訳",
+                                          style: TextStyle(
+                                            color: TWITTER_BLUE,
+                                            fontSize: 13,
+                                          ),
+                                        ),
+                                      ]
+                                    ),
+                                  )
+                                )
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(
+                                  top: 11
+                                ),
+                                child: Row(
+                                  children: <Widget>[
+                                    ImageAndText(
+                                      imgName:'location.jpg', 
+                                      text:'127.0.0.1',
+                                      color: FONT_GRAY,
+                                    ),
+                                    ImageAndText(
+                                      imgName: 'link.jpg',
+                                      text: 'developer.twitter.com/en/community',
+                                      color: TWITTER_BLUE,
+                                    )
+                                  ],
+                                ),
+                              ),
+                              ImageAndText(
+                                imgName: 'birthday.jpg',
+                                text: '誕生日: 3月21日',
+                                color: FONT_GRAY,
+                              ),
+                              ImageAndText(
+                                imgName: 'calendar.jpg',
+                                text: '2013年12月からTwitterを利用しています',
+                                color: FONT_GRAY,
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(top: 10),
+                                child: Row(
+                                  children: <Widget>[
+                                    FollowText(
+                                      boldText: "1,708",
+                                      text: "フォロー中",
+                                    ),
+                                    FollowText(
+                                      boldText: "50.6万",
+                                      text: "フォロワー",
+                                    )
+                                  ],
+                                )
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(
+                            top: 6,
+                            left: 20
+                          ),
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              "フォローしている人にフォロワーはいません",
+                              style: TextStyle(
+                                color: FONT_GRAY,
+                                fontSize: 13,
+                              ),
+                            ),
+                          )
+                        ),
+                        DefaultTabController(
+                          length: 4,
+                          child: SizedBox(
+                            height: 100.0,
+                            child: Column(
+                              children: <Widget>[
+                                TabBar(
+                                  tabs: <Widget>[
+                                    Tab(
+                                      text: "ツイート",
+                                    ),
+                                    Tab(
+                                      text: "ツイートと返信",
+                                    ),
+                                    Tab(
+                                      text: "メディア",
+                                    ),
+                                    Tab(
+                                      text: "いいね",
+                                    )
+                                  ],
+                                ),
+                                Expanded(
+                                  child: TabBarView(
+                                    children: <Widget>[
+                                      Container(
+                                        color: DARK_THEME,
+                                      ),
+                                      Container(
+                                        color: DARK_THEME,
+                                      ),
+                                      Container(
+                                        color: DARK_THEME,
+                                      ),
+                                      Container(
+                                        color: DARK_THEME,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Positioned(
+                    top: 100.0,
+                    left: 20.0,
+                    child: Container(
+                      width: 83.0,
+                      height: 83.0,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: DARK_THEME),
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                          image: AssetImage('assets/img/twitter-icon.jpg'),
+                        )
+                      ),
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+        child: Image(
+          image: AssetImage('assets/img/twitter-button.jpg'),
+        ),
+        backgroundColor: TWITTER_BLUE,
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: DARK_THEME,
+        type: BottomNavigationBarType.fixed,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home,
+              color: Colors.white,
+            ),
+            title: Text(""),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.search,
+              color: Colors.white,
+            ),
+            title: Text(""),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.notifications,
+              color: Colors.white,
+            ),
+            title: Text(""),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.mail,
+              color: Colors.white,
+            ),
+            title: Text(""),
+          ),
+        ],
+      ),
     );
   }
 }
