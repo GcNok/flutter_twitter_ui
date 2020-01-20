@@ -34,7 +34,32 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       resizeToAvoidBottomPadding: false,
       appBar: AppBar(
-        title: Text(widget.title),
+        leading: Image(
+          image: AssetImage('assets/img/back.png'),
+        ),
+        title: Align(
+          alignment: Alignment.centerLeft,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                "Twitter Dev",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold
+                ),
+              ),
+              Text(
+                "3,480件のツイート",
+                style: TextStyle(
+                  color: FONT_GRAY,
+                  fontSize: 13,
+                ),
+              ),
+            ],
+          )
+        ),
       ),
       body: SingleChildScrollView(
         child:Container(
@@ -271,6 +296,45 @@ class _MyHomePageState extends State<MyHomePage> {
                         )
                       ),
                     ),
+                  ),
+                  Positioned(
+                    top: 140.0,
+                    right: 20.0,
+                    child: Row(
+                      children: <Widget>[
+                        Container(
+                          width: 38.0,
+                          height: 38.0,
+                          decoration: BoxDecoration(
+                            border: Border.all(color: TWITTER_BLUE),
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                              image: AssetImage('assets/img/setting.png'),
+                            )
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(left: 8),
+                          width: 87.0,
+                          height: 38.0,
+                          decoration: BoxDecoration(
+                            border: Border.all(color: TWITTER_BLUE),
+                            borderRadius: BorderRadius.all(Radius.circular(40))
+                          ),
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: Text(
+                              "フォロー",
+                              style: TextStyle(
+                                color: TWITTER_BLUE,
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold
+                              )
+                            ),
+                          )
+                        ),
+                      ],
+                    )
                   ),
                 ],
               )
